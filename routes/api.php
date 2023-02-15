@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/communities', [CommunityController::class, 'index']);
+Route::post('/communities', [CommunityController::class, 'store']);
+Route::get('/communities/{community}', [CommunityController::class, 'show']);
+Route::get('/communities/{community}/edit', [CommunityController::class, 'edit']);
+Route::put('/communities/{community}', [CommunityController::class, 'update']);
+Route::delete('/communities/{community}', [CommunityController::class, 'destroy']);
