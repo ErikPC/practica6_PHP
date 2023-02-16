@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('content')->required();
             $table->boolean('is_caducable')->default(false);
             $table->boolean('is_comentable')->default(false);
-            $table->bigInteger('community_id')->references('id')->on('communities')->onDelete('cascade');
             $table->string('access')->default('private');
             $table->timestamps();
         });

@@ -9,42 +9,31 @@ class CommunityController extends Controller
 {
     public function index()
     {
-        // devolver json de comunidades
-        return response()->json(Community::all());
+        $post = Community::all();
+        return response()->json($post);
     }
 
     public function store(Request $request)
     {
-        $community = new Community;
-
-        $community->title = $request->input('title');
-        $community->save();
-
-        return view('communitiesCreate');
+        $community = Community::create($request->all());
+        return response()->json($community, 201);
     }
 
     public function show(Community $community)
     {
-        return view('communities.show', ['community' => $community]);
-    }
-
-    public function edit(Community $community)
-    {
-        return view('communities.edit', ['community' => $community]);
+        return response()->json($community);
     }
 
     public function update(Request $request, Community $community)
     {
-        $community->title = $request->input('title');
-        $community->save();
-
-        return redirect('/communities');
+        $community->update($request->all());
+        return response()->json($community);
     }
 
     public function destroy(Community $community)
     {
         $community->delete();
 
-        return redirect('/communities');
+        return response()->json(null, 204);
     }
 }
