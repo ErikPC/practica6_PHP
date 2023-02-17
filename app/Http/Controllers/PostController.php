@@ -20,7 +20,10 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
+        $post = new Post;
+        $post->body = $request->body;
+        $post->community_id = $request->community_id;
+        $post->save();
         return response()->json($post, 201);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommunityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -33,3 +35,10 @@ Route::get('/posts/{post}', [PostController::class, 'show']);
 Route::put('/posts/{post}', [PostController::class, 'update']);
 Route::patch('/posts/{post}', [PostController::class, 'update']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+
+Route::get('/comments', [CommentController::class, 'index']);
+Route::post('/comments', [CommentController::class, 'store']);
+Route::get('/comments/{comment}', [CommentController::class, 'show']);
+Route::put('/comments/{comment}', [CommentController::class, 'update']);
+Route::patch('/comments/{comment}', [CommentController::class, 'update']);
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);

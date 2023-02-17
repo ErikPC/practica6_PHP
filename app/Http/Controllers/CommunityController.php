@@ -9,13 +9,16 @@ class CommunityController extends Controller
 {
     public function index()
     {
-        $post = Community::all();
-        return response()->json($post);
+        $community = Community::all();
+        return response()->json($community, 200);
     }
 
     public function store(Request $request)
     {
-        $community = Community::create($request->all());
+        $community = new Community;
+        $community->name = $request->name;
+        $community->description = $request->description;
+        $community->save();
         return response()->json($community, 201);
     }
 

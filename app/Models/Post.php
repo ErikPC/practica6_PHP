@@ -10,12 +10,17 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'body',
-        'community_id'
+        'body'
     ];
 
     public function community()
     {
         return $this->belongsTo(Community::class);
+    }
+
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
