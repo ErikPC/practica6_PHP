@@ -22,25 +22,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/communities', [CommunityController::class, 'index']);
-Route::post('/communities', [CommunityController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/communities', [CommunityController::class, 'index']);
+    Route::post('/communities', [CommunityController::class, 'store']);
+    Route::put('/communities/{community}', [CommunityController::class, 'update']);
+    Route::delete('/communities/{community}', [CommunityController::class, 'destroy']);
+});
 Route::get('/communities/{community}', [CommunityController::class, 'show']);
-Route::put('/communities/{community}', [CommunityController::class, 'update']);
-Route::delete('/communities/{community}', [CommunityController::class, 'destroy']);
 
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::put('/posts/{post}', [PostController::class, 'update']);
+    Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+});
 Route::get('/posts', [PostController::class, 'index']);
-Route::post('/posts', [PostController::class, 'store']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
-Route::put('/posts/{post}', [PostController::class, 'update']);
-Route::patch('/posts/{post}', [PostController::class, 'update']);
-Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::put('/comments/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+});
 Route::get('/comments', [CommentController::class, 'index']);
-Route::post('/comments', [CommentController::class, 'store']);
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
-Route::put('/comments/{comment}', [CommentController::class, 'update']);
-Route::patch('/comments/{comment}', [CommentController::class, 'update']);
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 
-Route::get("/token", [TokenController::class, 'generateToken']);
+
+Route::middleware('auth:sanctum')->get("/token", [TokenController::class, 'getToken']);

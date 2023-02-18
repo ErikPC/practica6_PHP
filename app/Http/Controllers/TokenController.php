@@ -13,7 +13,7 @@ class TokenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function generateToken(Request $request)
+    public function getToken(Request $request)
     {
 
         $token = $request->user()->generateToken();
