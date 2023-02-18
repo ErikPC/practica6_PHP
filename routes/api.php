@@ -5,7 +5,7 @@ use App\Http\Controllers\CommunityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\TokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +42,5 @@ Route::get('/comments/{comment}', [CommentController::class, 'show']);
 Route::put('/comments/{comment}', [CommentController::class, 'update']);
 Route::patch('/comments/{comment}', [CommentController::class, 'update']);
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+
+Route::get("/token", [TokenController::class, 'generateToken']);
