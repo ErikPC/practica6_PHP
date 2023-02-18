@@ -15,10 +15,7 @@ class CommunityController extends Controller
 
     public function store(Request $request)
     {
-        $community = new Community;
-        $community->name = $request->name;
-        $community->description = $request->description;
-        $community->save();
+        $community = Community::create($request->all());
         return response()->json($community, 201);
     }
 
