@@ -33,3 +33,17 @@ test("get One community", function () {
         'updated_at'
     ]);
 });
+
+test('create community', function () {
+    $response = $this->post('/api/communities', [
+        'title' => 'test'
+    ]);
+
+    $response->assertStatus(201);
+    $response->assertJsonStructure([
+        'id',
+        'title',
+        'created_at',
+        'updated_at'
+    ]);
+});
