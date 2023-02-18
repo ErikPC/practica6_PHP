@@ -47,3 +47,18 @@ test('create community', function () {
         'updated_at'
     ]);
 });
+
+test('update community', function () {
+    $community = Community::factory()->create();
+    $response = $this->put("/api/communities/{$community->id}", [
+        'title' => 'test'
+    ]);
+
+    $response->assertStatus(200);
+    $response->assertJsonStructure([
+        'id',
+        'title',
+        'created_at',
+        'updated_at'
+    ]);
+});
