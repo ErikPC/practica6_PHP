@@ -23,11 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/communities', [CommunityController::class, 'index']);
     Route::post('/communities', [CommunityController::class, 'store']);
     Route::put('/communities/{community}', [CommunityController::class, 'update']);
     Route::delete('/communities/{community}', [CommunityController::class, 'destroy']);
 });
+Route::get('/communities', [CommunityController::class, 'index']);
 Route::get('/communities/{community}', [CommunityController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
