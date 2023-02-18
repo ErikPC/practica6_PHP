@@ -69,3 +69,9 @@ test('delete community', function () {
 
     $response->assertStatus(204);
 });
+
+test("error object when comunidad not found", function () {
+    $response = $this->get("/api/communities/999");
+
+    $response->assertStatus(404);
+});
