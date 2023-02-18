@@ -14,9 +14,22 @@ test('all Communities', function () {
     $response->assertJsonStructure([
         '*' => [
             'id',
-            'name',
+            'title',
             'created_at',
             'updated_at'
         ]
+    ]);
+});
+
+test("get One community", function () {
+    $community = Community::factory()->create();
+    $response = $this->get("/api/communities/{$community->id}");
+
+    $response->assertStatus(200);
+    $response->assertJsonStructure([
+        'id',
+        'title',
+        'created_at',
+        'updated_at'
     ]);
 });
