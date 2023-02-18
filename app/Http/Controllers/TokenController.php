@@ -7,7 +7,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class TokenController extends Controller
 {
-    use HasApiTokens;
     /**
      * Generate a new token for the authenticated user.
      *
