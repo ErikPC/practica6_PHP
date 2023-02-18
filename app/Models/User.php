@@ -48,4 +48,19 @@ class User extends Authenticatable
 
         return $token;
     }
+
+    public function communities()
+    {
+        return $this->hasMany(Community::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
