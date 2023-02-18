@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function generateToken()
+    {
+        $token = $this->createToken('token-name')->plainTextToken;
+
+        return $token;
+    }
 }
