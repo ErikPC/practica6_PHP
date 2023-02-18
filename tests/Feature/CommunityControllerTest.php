@@ -62,3 +62,10 @@ test('update community', function () {
         'updated_at'
     ]);
 });
+
+test('delete community', function () {
+    $community = Community::factory()->create();
+    $response = $this->delete("/api/communities/{$community->id}");
+
+    $response->assertStatus(204);
+});
