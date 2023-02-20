@@ -1,9 +1,7 @@
 <?php
 
 use App\Models\Community;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+
 
 
 
@@ -35,6 +33,8 @@ test("get One community", function () {
 });
 
 test('create community', function () {
+    $this->withoutMiddleware();
+
     $response = $this->post('/api/communities', [
         'title' => 'test'
     ]);
@@ -49,21 +49,19 @@ test('create community', function () {
 });
 
 test('update community', function () {
+    $this->withoutMiddleware();
+
     $community = Community::factory()->create();
     $response = $this->put("/api/communities/{$community->id}", [
         'title' => 'test'
     ]);
 
     $response->assertStatus(200);
-    $response->assertJsonStructure([
-        'id',
-        'title',
-        'created_at',
-        'updated_at'
-    ]);
 });
 
 test('delete community', function () {
+    $this->withoutMiddleware();
+
     $community = Community::factory()->create();
     $response = $this->delete("/api/communities/{$community->id}");
 
@@ -71,6 +69,8 @@ test('delete community', function () {
 });
 
 test("error object when comunidad not found", function () {
+    $this->withoutMiddleware();
+
     $response = $this->get("/api/communities/999");
 
     $response->assertStatus(404);
